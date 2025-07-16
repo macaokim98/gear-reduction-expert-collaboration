@@ -1,0 +1,109 @@
+### 주요 요약
+
+- 기어 설계 자료, 규격, 강도, 강성, 기어 치형, 기어 재질, 기어 형상, 축 및 기타 설계 자료와 관련된 TDP(Technical Data Package) 및 기술 데이터 패키지를 찾을 수 있습니다.
+- 연구 결과, KG Stock Gears의 기술 데이터 문서가 포괄적인 자료를 제공하며, 개별 챕터별 PDF 다운로드가 가능합니다.
+- 추가적으로 Engineers Edge, KHK Gears, SlideShare의 PSG Design Data Book, AGMA 표준 등도 유용한 자료를 제공합니다.
+
+#### 기어 설계 자료 및 TDP
+
+KG Stock Gears의 기술 데이터 문서는 기어 설계에 필요한 다양한 정보를 포함하며, PDF 형식으로 다운로드 가능합니다. 이 문서는 기어의 역사, 종류, 치형, 용어, 기본 차원, 특성, 백래시, 랙 시프트, 접촉 비율, 치형 수정 등을 다루며, 헬리컬, 베벨, 웜 기어 등 다양한 기어 유형에 대한 사용 주의사항도 포함됩니다. 강도 및 강성 계산에 필요한 공식과 기어 재질에 대한 정보도 제공됩니다.
+
+- **링크**: [KG Stock Gears Technical Data Document](https://www.kggear.co.jp/en/gear-technical-data)
+
+#### 추가 자료
+
+- **Engineers Edge**: 스퍼 기어 및 헬리컬 기어 설계에 필요한 공식과 차원을 제공하며, 강도 및 강성 관련 계산에 유용합니다.
+  - **링크**: [Gear Design Equations and Formula](https://www.engineersedge.com/gear_formula.htm)
+- **KHK Gears**: 기어 설계에 필요한 기술적 참고 자료를 제공하며, 재질, 열처리, 윤활 등에 대한 정보를 포함합니다.
+  - **링크**: [KHK Gears Gear Technical Reference](https://khkgears.net/new/gear_knowledge/gear_technical_reference/)
+- **SlideShare**: PSG Design Data Book은 헬리컬 기어 설계에 필요한 데이터를 포함하며, 기어 재질 및 설계 자료를 제공할 가능성이 있습니다.
+  - **링크**: [PSG Design Data Book for Helical Gear Design](https://www.slideshare.net/slideshow/psg-design-data-book-pages-required-for-helical-gear-design/237065612)
+- **AGMA Standards**: 기어 설계 및 제조에 대한 국제 표준을 제공하지만, 무료 다운로드가 가능한 TDP는 제공되지 않으며 구매 또는 회원 자격이 필요합니다.
+  - **링크**: [AGMA Standards](https://www.agma.org/standards-technology/)
+
+---
+
+### 보고서
+
+#### 서론
+
+본 보고서는 사용자가 요청한 기어 설계 자료, 규격, 강도, 강성, 기어 치형, 기어 재질, 기어 형상, 축 및 기타 설계 자료와 관련된 TDP(Technical Data Package) 및 기술 데이터 패키지를 찾는 데 초점을 맞추었습니다. 연구 결과, 여러 신뢰할 수 있는 출처에서 관련 자료를 확인할 수 있었으며, 특히 KG Stock Gears의 기술 데이터 문서가 포괄적인 정보를 제공하는 것으로 나타났습니다. 추가적으로 Engineers Edge, KHK Gears, SlideShare의 PSG Design Data Book, AGMA 표준 등도 유용한 자료를 제공합니다. 아래에서는 각 자료의 세부 내용과 링크를 포함하여 상세히 설명합니다.
+
+#### 주요 자료: KG Stock Gears Technical Data Document
+
+KG Stock Gears는 기어 설계에 필요한 포괄적인 기술 데이터 문서를 제공하며, 이는 사용자의 요청에 부합하는 TDP로 간주될 수 있습니다. 이 문서는 다음과 같은 내용을 포함합니다:
+
+- **기본 지식**: 기어의 역사, 종류, 치형, 용어, 기본 차원, 특성, 백래시, 랙 시프트, 접촉 비율, 치형 수정 등.
+- **사용 주의사항**: 헬리컬 기어, 베벨 기어, 웜 기어, 안티 백래시 스퍼 기어 등 다양한 기어 유형에 대한 사용 지침.
+- **강도 및 강성**: 강도 및 강성 계산에 필요한 공식과 관련 정보 제공.
+- **기어 재질 및 형상**: 기어 재질과 형상에 대한 정보가 "Features of common gear" 및 "Terminology of each part of the gear" 챕터에 포함될 가능성이 높습니다.
+
+이 문서는 PDF 형식으로 다운로드 가능하며, 개별 챕터별로도 접근할 수 있습니다. 아래 표는 주요 챕터와 해당 다운로드 링크를 정리한 것입니다.
+
+| **챕터**                     | **주제**                                              | **다운로드 링크**                                                                                     |
+|------------------------------|-------------------------------------------------------|------------------------------------------------------------------------------------------------------|
+| 1.1                          | Gear history                                         | [PDF](https://www.kggear.co.jp/en/wp-content/themes/bizvektor-global-edition/pdf/1.1_Gear-History_TechnicalData_KGSTOCKGEARS.pdf) |
+| 1.2                          | Types of Gear                                        | [PDF](https://www.kggear.co.jp/en/wp-content/themes/bizvektor-global-edition/pdf/1.2_Types-of-Gear_TechnicalData_KGSTOCKGEARS.pdf) |
+| 1.3                          | Types of Tooth profiles curves                       | [PDF](https://www.kggear.co.jp/en/wp-content/themes/bizvektor-global-edition/pdf/1.3_Types-of-Tooth-profiles-curves_TechnicalData_KGSTOCKGEARS.pdf) |
+| 1.4                          | Terminology of each part of the gear                 | [PDF](https://www.kggear.co.jp/en/wp-content/themes/bizvektor-global-edition/pdf/1.4_Terminology-of-each-part-of-the-gear_TechnicalData_KGSTOCKGEARS.pdf) |
+| 1.5                          | Fundamental dimensions for various sizes of Tooth profile | [PDF](https://www.kggear.co.jp/en/wp-content/themes/bizvektor-global-edition/pdf/1.5_Fundamental-dimensions-for-various-sizes-of-Tooth-profiles_TechnicalData_KGSTOCKGEARS.pdf) |
+| 1.6                          | Features of common gear                              | [PDF](https://www.kggear.co.jp/en/wp-content/themes/bizvektor-global-edition/pdf/1.6_Features-of-common-gears_TechnicalData_KGSTOCKGEARS.pdf) |
+| 1.7                          | Backlash                                             | [PDF](https://www.kggear.co.jp/en/wp-content/themes/bizvektor-global-edition/pdf/1.7_Backlash_TechnicalData_KGSTOCKGEARS.pdf) |
+| 1.8                          | Rack shift of the gear                               | [PDF](https://www.kggear.co.jp/en/wp-content/themes/bizvektor-global-edition/pdf/1.8_Rack-shift-of-the-gear_TechnicalData_KGSTOCKGEARS.pdf) |
+| 1.9                          | Contact ratio and Specific sliding                   | [PDF](https://www.kggear.co.jp/en/wp-content/themes/bizvektor-global-edition/pdf/1.9_Contact-ratio-and-Specific-sliding_TechnicalData_KGSTOCKGEARS.pdf) |
+| 1.10                         | Tooth profile modification                           | [PDF](https://www.kggear.co.jp/en/wp-content/themes/bizvektor-global-edition/pdf/1.10_Tooth-profile-modification_TechinicalData_KGSTOCKGEARS.pdf) |
+| 2.1                          | Precaution of usage for Helical gear                 | [PDF](https://www.kggear.co.jp/en/wp-content/themes/bizvektor-global-edition/pdf/2.1_Precaution-of-usage-for-Helical-gear_TechnicalData_KGSTOCKGEARS.pdf) |
+| 2.2                          | Precaution of usage for Bevel gear                   | [PDF](https://www.kggear.co.jp/en/wp-content/themes/bizvektor-global-edition/pdf/2.2_Precaution-of-usage-for-Bevel-gear_TechnicalData_KGSTOCKGEARS.pdf) |
+| 2.3                          | Precaution of usage for Worm gear pair               | [PDF](https://www.kggear.co.jp/en/wp-content/themes/bizvektor-global-edition/pdf/2.3_Precaution-of-usage-for-Worm-gear-pair_TechnicalData_KGSTOCKGEARS.pdf) |
+| 2.4                          | Precaution of usage for Anti backlash spur gears     | [PDF](https://www.kggear.co.jp/en/wp-content/themes/bizvektor-global-edition/pdf/2.4_Precaution-of-usage-for-Anti-backlash-spur-gears_TechnicalData_KGSTOCKGEARS.pdf) |
+| 2.5                          | Precaution of usage for B-BOX                        | [PDF](https://www.kggear.co.jp/en/wp-content/themes/bizvektor-global-edition/pdf/2.5_Precaution-of-usage-for-B-BOX_TechnicalData_KGSTOCKGEARS.pdf) |
+| 2.6                          | Precaution of usage for B-SET                        | [PDF](https://www.kggear.co.jp/en/wp-content/themes/bizvektor-global-edition/pdf/2.6_Precaution-of-usage-for-B-SET_TechnicalData_KGSTOCKGEARS.pdf) |
+
+사용자는 위 링크를 통해 개별 챕터를 다운로드하여 필요한 정보를 얻을 수 있습니다. 완전한 문서 다운로드 링크는 페이지에서 직접 확인 가능하며, 이는 11.41MB 크기의 PDF로 제공됩니다.
+
+#### 추가 자료: Engineers Edge
+
+Engineers Edge는 기어 설계에 필요한 공식과 차원을 제공하며, 특히 강도 및 강성 관련 계산에 유용합니다. 주요 내용은 다음과 같습니다:
+
+- **강도 관련 공식**: 애덤덤 (a = 1.000 / P), 디덤덤 (b = 1.250 / P), 워킹 디프스 (hk = 2.000 / P), 클리어런스 (c = 0.250 / P) 등.
+- **강성 관련 공식**: 피치 다이아미터 (D = N / P), 루트 다이아미터 (DR = D - 2b), 베이스 서클 다이아미터 (DB = D cosφ) 등.
+- **헬리컬 기어 공식**: 노말 다이아미터 (Dn = D / cos A), 리드 (L = πD / tan A) 등.
+
+이 사이트는 또한 설계 도구와 계산기 링크를 제공하여 실질적인 설계 작업을 지원합니다.
+
+- **링크**: [Gear Design Equations and Formula](https://www.engineersedge.com/gear_formula.htm)
+
+#### 추가 자료: KHK Gears
+
+KHK Gears는 기어 설계에 필요한 기술적 참고 자료를 제공하며, 다음과 같은 내용을 포함합니다:
+
+- 기어 강도 및 크기 계산을 위한 다양한 공식.
+- 기어 유형, 전문 용어, 속도 비율, 회전 방향, 치형, 백래시, ISO 및 AGMA의 정밀도 등급.
+- 조립 정확도, 재질, 열처리, 윤활, 소음 및 파단 문제 해결, 기하 공차 등.
+
+KHK는 PDF 형식의 기술 데이터를 제공하며, 기어 계산 소프트웨어를 출판할 계획이라고 언급하고 있습니다.
+
+- **링크**: [KHK Gears Gear Technical Reference](https://khkgears.net/new/gear_knowledge/gear_technical_reference/)
+
+#### 추가 자료: SlideShare PSG Design Data Book
+
+SlideShare에서 제공하는 PSG Design Data Book은 헬리컬 기어 설계에 필요한 데이터를 포함한 프레젠테이션입니다. 이 문서는 표준 공식, 가정, 플랫 벨트, V-벨트, 체인 드라이브 등의 표준 데이터를 포함하며, 기어 재질 및 설계 자료를 제공할 가능성이 있습니다. 관련 자료는 다음과 같습니다:
+
+- **헬리컬 기어 설계 데이터**: 표준 설계 절차 및 공식.
+- **기타 관련 자료**: 기어 박스 설계, 기어 펌프 설계 등.
+
+- **링크**: [PSG Design Data Book for Helical Gear Design](https://www.slideshare.net/slideshow/psg-design-data-book-pages-required-for-helical-gear-design/237065612)
+
+#### 추가 자료: AGMA Standards
+
+AGMA(American Gear Manufacturers Association)는 기어 설계 및 제조에 대한 국제 표준을 제공하며, 다음과 같은 주제를 다룹니다:
+
+- 설계 및 분석, 제조 및 품질, 재질, 열처리, 운영, 유지보수, 윤활, 효율성, 기어 파단 등.
+
+그러나 AGMA 표준은 일반적으로 구매 또는 회원 자격을 통해 접근 가능하며, 무료 다운로드가 가능한 TDP는 제공되지 않습니다.
+
+- **링크**: [AGMA Standards](https://www.agma.org/standards-technology/)
+
+#### 결론
+
+사용자의 요청에 따라, KG Stock Gears의 기술 데이터 문서가 가장 포괄적인 TDP를 제공하며, 개별 챕터별 PDF 다운로드가 가능합니다. 추가적으로 Engineers Edge, KHK Gears, SlideShare의 PSG Design Data Book, AGMA 표준 등도 유용한 자료를 제공합니다. 사용자는 위 링크를 통해 필요한 정보를 얻을 수 있으며, 설계 작업에 활용할 수 있을 것입니다.
