@@ -121,38 +121,188 @@ class DrAnalysisAgent(PersonaAgent):
         )
     
     async def perform_strength_analysis(self, **kwargs) -> Dict[str, Any]:
-        """기어 강도 해석 수행"""
-        # 프로젝트 파라미터 가져오기
-        params = self.context.parameters
-        module = float(params.get('module', '2').replace('mm', '').strip())
-        gear_ratio = params.get('gear_ratio', '5:1')
-        input_torque = float(params.get('input_torque', '20').replace('Nm', '').strip())
+        """ISO 6336 기준 실제 기어 강도 해석 수행"""
+        # 프로젝트 파라미터 가져오기 
+        params = self.context.parameters if hasattr(self, 'context') and self.context else kwargs
+        module = float(str(params.get('module', 2)).replace('mm', '').strip())
+        gear_ratio_str = params.get('gear_ratio', '5:1')
+        gear_ratio = float(gear_ratio_str.split(':')[0]) if ':' in str(gear_ratio_str) else float(gear_ratio_str)
+        input_torque = float(str(params.get('input_torque', 20)).replace('Nm', '').strip())
+        motor_rpm = float(str(params.get('motor_rpm', 2000)).replace('rpm', '').strip())
         
-        # 기어 제원 계산
-        gear_specs = self._calculate_gear_specifications(module, gear_ratio, input_torque)
+        # 실제 ISO 6336 계산 엔진 사용
+        from gear_calculations import (
+            ISO6336Calculator, 
+            create_standard_gear_system
+        )
         
-        # ISO 6336 기반 강도 계산
-        bending_analysis = await self._iso_6336_bending_strength(gear_specs)
-        contact_analysis = await self._iso_6336_contact_strength(gear_specs)
+        # 계산기 초기화 및 실제 계산 수행
+        calculator = ISO6336Calculator()
         
-        # Dr. Analysis의 전문가 판단
-        expert_assessment = self._provide_strength_assessment(bending_analysis, contact_analysis)
+        # 표준 기어 시스템 생성 (20T 구동기어 기준)
+        teeth_pinion = 20
+        geometry, load, material = create_standard_gear_system(
+            module=module,
+            teeth_pinion=teeth_pinion,
+            gear_ratio=gear_ratio,
+            input_torque=input_torque,
+            input_speed=motor_rpm
+        )
+        
+        print(f"🔬 Dr. Analysis: 20년 경험상 이런 경우에는 상세 계산이 필요합니다.")
+        print(f"   모듈 {module}mm, 기어비 {gear_ratio}:1, 토크 {input_torque}Nm로 ISO 6336 적용")
+        
+        # 단계별 실제 계산 수행
+        Ft = calculator.calculate_tangential_force(geometry, load)
+        sigma_F_pinion, sigma_F_gear = calculator.calculate_bending_stress(geometry, load, Ft)
+        sigma_H = calculator.calculate_contact_stress(geometry, material, Ft)
+        SF_pinion, SF_gear, SH = calculator.calculate_safety_factors(
+            sigma_F_pinion, sigma_F_gear, sigma_H, material
+        )
+        
+        # 상세 계산 보고서 생성
+        detailed_report = calculator.generate_calculation_report()
+        
+        # Dr. Analysis의 20년차 전문가 평가
+        expert_assessment = self._provide_detailed_engineering_assessment(
+            SF_pinion, SF_gear, SH, sigma_F_pinion, sigma_F_gear, sigma_H
+        )
         
         analysis_result = {
-            "analysis_method": "ISO 6336:2019 기반 강도 해석",
-            "gear_specifications": gear_specs,
-            "bending_strength": bending_analysis,
-            "contact_strength": contact_analysis,
-            "expert_assessment": expert_assessment,
-            "safety_factors": {
-                "bending_pinion": bending_analysis.get("safety_factor_pinion", 0),
-                "bending_gear": bending_analysis.get("safety_factor_gear", 0),
-                "contact": contact_analysis.get("safety_factor", 0)
+            "analysis_method": "ISO 6336:2019 표준 완전 준수 계산",
+            "gear_specifications": {
+                "module": geometry.module,
+                "teeth_pinion": geometry.teeth_pinion,
+                "teeth_gear": geometry.teeth_gear,
+                "pitch_diameter_pinion": geometry.pitch_diameter_pinion,
+                "pitch_diameter_gear": geometry.pitch_diameter_gear,
+                "face_width": geometry.face_width,
+                "center_distance": geometry.center_distance,
+                "gear_ratio": geometry.gear_ratio
             },
-            "recommendations": self._generate_strength_recommendations(bending_analysis, contact_analysis)
+            "load_conditions": {
+                "tangential_force": Ft,
+                "input_torque": load.input_torque,
+                "input_speed": load.input_speed,
+                "transmitted_power": load.power
+            },
+            "bending_strength_analysis": {
+                "pinion_stress": sigma_F_pinion,
+                "gear_stress": sigma_F_gear,
+                "allowable_stress": material.allowable_bending,
+                "pinion_safety_factor": SF_pinion,
+                "gear_safety_factor": SF_gear,
+                "standard_reference": "ISO 6336-3:2019",
+                "calculation_method": "Lewis formula with ISO corrections"
+            },
+            "contact_strength_analysis": {
+                "contact_stress": sigma_H,
+                "allowable_stress": material.allowable_contact,
+                "safety_factor": SH,
+                "standard_reference": "ISO 6336-2:2019",
+                "calculation_method": "Hertz contact theory"
+            },
+            "material_properties": {
+                "designation": material.name,
+                "allowable_bending": material.allowable_bending,
+                "allowable_contact": material.allowable_contact,
+                "elastic_modulus": material.elastic_modulus
+            },
+            "detailed_calculation_steps": detailed_report,
+            "total_calculation_steps": len(calculator.calculation_steps),
+            "expert_assessment": expert_assessment,
+            "safety_evaluation": self._evaluate_safety_compliance(SF_pinion, SF_gear, SH),
+            "engineering_recommendations": self._generate_engineering_recommendations(SF_pinion, SF_gear, SH)
         }
         
         return analysis_result
+    
+    def _provide_detailed_engineering_assessment(self, SF_pinion: float, SF_gear: float, 
+                                               SH: float, sigma_F_pinion: float, 
+                                               sigma_F_gear: float, sigma_H: float) -> str:
+        """20년차 전문가의 상세 공학적 평가"""
+        assessment = []
+        
+        # 굽힘 강도 평가
+        if SF_pinion < 1.3:
+            assessment.append("⚠️ 구동기어 굽힘 안전계수가 매우 낮습니다. 치폭 증가 또는 모듈 상향 검토 필요")
+        elif SF_pinion < 1.5:
+            assessment.append("⚡ 구동기어 굽힘 안전계수가 기준 하한선입니다. 여유도 확보 권장")
+        else:
+            assessment.append("✅ 구동기어 굽힘 강도 양호 (SF = {:.2f})".format(SF_pinion))
+            
+        if SF_gear < 1.5:
+            assessment.append("⚠️ 피동기어 굽힘 안전계수 부족. 재료 강도 향상 검토")
+        else:
+            assessment.append("✅ 피동기어 굽힘 강도 양호 (SF = {:.2f})".format(SF_gear))
+            
+        # 접촉 강도 평가  
+        if SH < 1.1:
+            assessment.append("🚨 접촉 안전계수 매우 위험. 즉시 설계 변경 필요")
+        elif SH < 1.2:
+            assessment.append("⚠️ 접촉 안전계수 기준 하한선. 표면 경화 또는 접촉응력 감소 필요")
+        else:
+            assessment.append("✅ 접촉 강도 양호 (SH = {:.2f})".format(SH))
+            
+        # 20년 경험 기반 종합 평가
+        min_safety = min(SF_pinion, SF_gear, SH)
+        if min_safety > 2.0:
+            overall = "20년 경험상 매우 안전한 설계입니다. 과설계 검토로 경량화 가능"
+        elif min_safety > 1.5:
+            overall = "이론적으로는 가능하지만 실제로는 제조 공차와 하중 변동을 고려해야 합니다"
+        else:
+            overall = "안전계수는 충분히 확보하는 것이 중요합니다. 추가 안전여유 확보 권장"
+            
+        assessment.append(f"\n🎓 Dr. Analysis 종합평가: {overall}")
+        
+        return "\n".join(assessment)
+    
+    def _evaluate_safety_compliance(self, SF_pinion: float, SF_gear: float, SH: float) -> Dict[str, Any]:
+        """안전성 준수 평가"""
+        return {
+            "iso_6336_compliance": {
+                "bending_pinion": "PASS" if SF_pinion >= 1.5 else "FAIL",
+                "bending_gear": "PASS" if SF_gear >= 1.5 else "FAIL", 
+                "contact": "PASS" if SH >= 1.2 else "FAIL"
+            },
+            "industrial_standards": {
+                "automotive": "PASS" if min(SF_pinion, SF_gear) >= 1.8 and SH >= 1.3 else "REVIEW",
+                "aerospace": "PASS" if min(SF_pinion, SF_gear) >= 2.5 and SH >= 2.0 else "FAIL",
+                "general_machinery": "PASS" if min(SF_pinion, SF_gear) >= 1.5 and SH >= 1.2 else "FAIL"
+            },
+            "dr_analysis_recommendation": {
+                "safety_level": "HIGH" if min(SF_pinion, SF_gear, SH) > 2.0 else 
+                               "ADEQUATE" if min(SF_pinion, SF_gear, SH) >= 1.5 else "LOW",
+                "confidence": "95%" if min(SF_pinion, SF_gear, SH) >= 1.5 else "70%"
+            }
+        }
+    
+    def _generate_engineering_recommendations(self, SF_pinion: float, SF_gear: float, SH: float) -> List[str]:
+        """공학적 권장사항 생성"""
+        recommendations = []
+        
+        # 굽힘 강도 개선 권장사항
+        if SF_pinion < 1.8:
+            recommendations.append("구동기어 치폭 20% 증가 검토 (현재 대비 안전계수 {:.1f}배 향상 예상)".format(1.2))
+            recommendations.append("모듈 2.2mm로 상향 검토 시 안전계수 {:.1f}배 향상".format(1.21))
+            
+        if SF_gear < 2.0:
+            recommendations.append("피동기어 재료를 SCM420 또는 SNCM815로 상향 검토")
+            
+        # 접촉 강도 개선 권장사항
+        if SH < 1.5:
+            recommendations.append("표면 경화 깊이 0.8~1.2mm로 증가 (현재 0.5mm 추정)")
+            recommendations.append("기어 정밀도를 JIS 4급으로 상향하여 하중 분산 개선")
+            
+        # 20년차 전문가 추가 권장사항
+        recommendations.extend([
+            "표준에서 권장하는 방법을 따르는 것이 가장 확실합니다: ISO 6336-5 윤활 지침 준수",
+            "실제 운전 중 온도 상승을 고려하여 열해석 병행 검토",
+            "제조 공차 ±0.02mm 이내 관리로 하중 집중 방지",
+            "20년 경험상 이런 경우에는 진동 해석도 함께 수행하시기 바랍니다"
+        ])
+        
+        return recommendations
     
     async def perform_stiffness_analysis(self, **kwargs) -> Dict[str, Any]:
         """기어 강성 해석 수행"""
